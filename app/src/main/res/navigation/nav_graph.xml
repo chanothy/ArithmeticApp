@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_userInput">
 
+    <fragment
+        android:id="@+id/fragment_userInput"
+        android:name="com.example.arithmeticapp.fragment_userInput"
+        android:label="fragment_user_input"
+        tools:layout="@layout/fragment_user_input" >
+        <action
+            android:id="@+id/action_fragment_userInput_to_fragment_math"
+            app:destination="@id/fragment_math" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_result"
+        android:name="com.example.arithmeticapp.fragment_result"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" />
+    <fragment
+        android:id="@+id/fragment_math"
+        android:name="com.example.arithmeticapp.fragment_math"
+        android:label="fragment_math"
+        tools:layout="@layout/fragment_math" >
+        <action
+            android:id="@+id/action_fragment_math_to_fragment_result"
+            app:destination="@id/fragment_result" />
+    </fragment>
 </navigation>
