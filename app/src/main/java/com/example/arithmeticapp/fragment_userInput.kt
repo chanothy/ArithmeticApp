@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.navigation.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,12 +32,23 @@ class fragment_userInput : Fragment() {
 //        }
 //    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_input, container, false)
+
+        val view = inflater.inflate(R.layout.fragment_user_input, container, false)
+        val startButton = view.findViewById<Button>(R.id.button3)
+        val startText = view.findViewById<TextView>(R.id.textView)
+        startButton.setOnClickListener {
+            view.findNavController().navigate(R.id.action_fragment_userInput_to_fragment_math)
+        }
+
+        return view
+
+
+
+
+
+
     }
 
 //    companion object {
