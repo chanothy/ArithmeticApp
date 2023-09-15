@@ -37,7 +37,6 @@ class fragment_userInput : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_user_input, container, false)
         val startButton = view.findViewById<Button>(R.id.button3)
-        val startText = view.findViewById<TextView>(R.id.textView)
         startButton.setOnClickListener {
             view.findNavController().navigate(R.id.action_fragment_userInput_to_fragment_math)
         }
