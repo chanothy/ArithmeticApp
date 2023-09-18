@@ -9,22 +9,25 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.findNavController
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [fragment_result.newInstance] factory method to
- * create an instance of this fragment.
- */
 class fragment_result : Fragment() {
-    // TODO: Rename and change types of parameters
+    /**
+     * Arithmetic app result page.
+     * Serves result page that shows how many questions answered correctly
+     *
+     * @property questionsCorrect - how many questions correct
+     * @property numQuestions - how many questions total
+     *
+     * @author Timothy Chan
+     */
     private var questionsCorrect = 0
     private var numQuestions = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        /**
+         * Assigns values from previous fragment to variables in this fragment
+         *
+         * @property savedInstanceState - takes bundle if passed from previous fragment that contains values
+         */
         super.onCreate(savedInstanceState)
         arguments?.let {
             questionsCorrect = it.getInt("QUESTIONSCORRECT")
@@ -36,6 +39,10 @@ class fragment_result : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        /**
+         * Creates textView with information about questions answered correctly
+         * Implements onClickListener that navigates back to userInput (starting) page
+         */
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_result, container, false)
         val resultView = view.findViewById<TextView>(R.id.resultView)
