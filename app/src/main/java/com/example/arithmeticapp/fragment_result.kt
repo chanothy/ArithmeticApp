@@ -52,7 +52,7 @@ class fragment_result : Fragment() {
             view.findNavController().navigate(R.id.action_fragment_result_to_fragment_userInput)
         }
 
-        resultView.text = "Your result: " + questionsCorrect.toString() + " /" + numQuestions.toString()
+        resultView.text = "Your result: " + questionsCorrect.toString() + " / " + numQuestions.toString()
         return view
     }
 

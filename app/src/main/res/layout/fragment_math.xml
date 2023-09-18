@@ -66,8 +66,8 @@
         android:layout_marginTop="124dp"
         android:ems="10"
         android:gravity="start|top"
-        android:inputType="textMultiLine"
         android:text="Your Answer..."
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/operator" />

@@ -85,7 +85,13 @@ class fragment_math : Fragment() {
         }
 
         doneButton.setOnClickListener {
-            if (answerBox.text.toString() == answer.toString()) {
+            if (answerBox.text.toString() == ".") {
+                Log.i("fragment_math","bad input")
+            }
+            else if (operation == 2 && Math.abs(answerBox.text.toString().toDouble() - answer) <= .01) {
+                questionsCorrect++
+            }
+            else if (operation != 2 && answerBox.text.toString().toDouble() == answer) {
                 questionsCorrect++
             }
             if (numQuestions <= 1) {
@@ -102,7 +108,7 @@ class fragment_math : Fragment() {
         return view
     }
 
-    fun mathGenerator(difficulty: Int, operation: Int, view: View): Int {
+    fun mathGenerator(difficulty: Int, operation: Int, view: View): Double {
         /**
          * Takes difficulty, operation, view to calculate the solution number.
          *
@@ -130,30 +136,38 @@ class fragment_math : Fragment() {
             num1 = Random.nextInt(0,49)
             num2 = Random.nextInt(0,49)
         }
+
         firstOperand.text = num1.toString()
         secondOperand.text= num2.toString()
 
+
         if (operation == 0) {
             operator.text = "+"
-            return num1 + num2
+            return (num1 + num2).toDouble()
         }
         else if (operation == 1) {
             operator.text = "X"
-            return num1 * num2
+            return (num1 * num2).toDouble()
         }
         /*
         Rounds down. I can do decimals, but makes it more time consuming to test.
-        Would use andra String.format for decimals and would change this func to return a string or float
+        Would use a String.format for decimals and would change this func to return a string or float
          */
         else if (operation == 2) {
             operator.text = "/"
-            return num1 / num2
+            if (num2 == 0) {
+                num2 = 1
+                secondOperand.text = num2.toString()
+                return num1.toDouble() / num2.toDouble()
+            }
+            return num1.toDouble() / num2.toDouble()
         }
         else if (operation == 3) {
             operator.text = "-"
-            return num1 - num2
+            return (num1 - num2).toDouble()
         }
 
-        return -1
+
+        return -1.0
     }
 }
