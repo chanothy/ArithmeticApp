@@ -85,7 +85,7 @@ class fragment_math : Fragment() {
         }
 
         doneButton.setOnClickListener {
-            if (answerBox.text.toString() == ".") {
+            if (answerBox.text.toString() == "." || answerBox.text.isEmpty()) {
                 Log.i("fragment_math","bad input")
             }
             else if (operation == 2 && Math.abs(answerBox.text.toString().toDouble() - answer) <= .01) {
