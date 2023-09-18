@@ -17,7 +17,21 @@ import kotlin.math.log
 import kotlin.random.Random
 
 class fragment_math : Fragment() {
-    // TODO: Rename and change types of parameters
+    /**
+     * Arithmetic app fragment math solving portion.
+     * Serves as math solving page.
+     *
+     * Fragment that serves as the math section of ArithmeticApp.
+     * The private variables recieve information from userInput and are then used in this fragment
+     *
+     * @property difficulty - difficulty from userInput
+     * @property operation - operation from userInput
+     * @property numQuestions - number of questions left to solve
+     * @property questionsCorrect - questions answered correctly
+     * @property originalQuestions - original amount of questions in userInput
+     *
+     * @author Timothy Chan
+     */
     private var difficulty = -1
     private var operation = -1
     private var numQuestions = -1
@@ -30,6 +44,12 @@ class fragment_math : Fragment() {
 //    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        /**
+         * Assigns values from previous fragment to variables in this fragment for use.
+         *
+         * @property savedInstanceState - takes a bundle passed from previous fragment that contains values
+         *      needed in this fragment
+         */
         super.onCreate(savedInstanceState)
         arguments?.let {
             difficulty = it.getInt("DIFFICULTY")
@@ -41,6 +61,17 @@ class fragment_math : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        /**
+         * Implements onClickListeners for Done button to take in the answer and check with correct solution.
+         * Increments if the solution is correct and moves to next fragment if enough questions have been answered.
+         *
+         * Implements onFocusChangeListener to clear the text in the textBox when it has the focus.
+         *
+         * @property container - container for fragment
+         * @property savedInstanceState - possible bundle that contains information for creating the view,
+         *      or saving information when orientation is changed
+         * @property inflater - converts fragment xml to Kotlin code for UI
+         */
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_math, container, false)
         val answerBox = view.findViewById<EditText>(R.id.answerBox)
@@ -68,18 +99,21 @@ class fragment_math : Fragment() {
             numQuestions--
         }
 
-
-
-//        val startButton = view.findViewById<TextView>(R.id.test)
-//        startButton.text = difficulty.toString()
         return view
-
     }
 
     fun mathGenerator(difficulty: Int, operation: Int, view: View): Int {
+        /**
+         * Takes difficulty, operation, view to calculate the solution number.
+         *
+         * @property difficulty - takes difficulty
+         * @property operation - takes operation for math
+         * @property view - view of fragment for TextView operations
+         *
+         * @return int solution for the current math operation
+         */
         var num1 = -1
         var num2 = -1
-        var op = ""
         val firstOperand = view.findViewById<TextView>(R.id.firstOperand)
         val secondOperand = view.findViewById<TextView>(R.id.secondOperand)
         val operator = view.findViewById<TextView>(R.id.operator)
@@ -122,24 +156,4 @@ class fragment_math : Fragment() {
 
         return -1
     }
-
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment fragment_math.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            fragment_math().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
-//    }
 }
