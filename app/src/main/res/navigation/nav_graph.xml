@@ -18,7 +18,11 @@
         android:id="@+id/fragment_result"
         android:name="com.example.arithmeticapp.fragment_result"
         android:label="fragment_result"
-        tools:layout="@layout/fragment_result" />
+        tools:layout="@layout/fragment_result" >
+        <action
+            android:id="@+id/action_fragment_result_to_fragment_userInput"
+            app:destination="@id/fragment_userInput" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_math"
         android:name="com.example.arithmeticapp.fragment_math"

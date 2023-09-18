@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,6 +39,11 @@ class fragment_result : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_result, container, false)
         val resultView = view.findViewById<TextView>(R.id.resultView)
+        val restartButton = view.findViewById<Button>(R.id.restartButton)
+
+        restartButton.setOnClickListener {
+            view.findNavController().navigate(R.id.action_fragment_result_to_fragment_userInput)
+        }
 
         resultView.text = "Your result: " + questionsCorrect.toString() + " /" + numQuestions.toString()
         return view

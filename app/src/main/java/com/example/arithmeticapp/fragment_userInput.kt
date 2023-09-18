@@ -15,39 +15,50 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [fragment_userInput.newInstance] factory method to
- * create an instance of this fragment.
- */
 class fragment_userInput : Fragment() {
-
+    /**
+     * Arithmetic app fragment User Input.
+     * Serves as userInput page.
+     *
+     * Fragment that serves as the userInput section of ArithmeticApp.
+     * Private variables store the information that is passed to nex fragment.
+     *
+     * @author Timothy Chan
+     */
     private var difficulty = 0 // 0:easy 1:med 2:hard
     private var operation = 0 // 0:add 1:mult 2:div 3:subtract
     private var numQuestions = 1
     private var difficultyChecked = false
     private var operationChecked = false
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        /**
-         * Saves the data of [difficulty], [numQuestions] and [operation] at the time or orientation change,
-         * to be re-assigned in onRestoreInstanceState()
-         *
-         * @property outState: Bundle that holds the data [DIFFICULTY], [OPERATION], AND [NUMQUESTIONS]
-         */
-        super.onSaveInstanceState(outState)
-        outState.putInt("DIFFICULTY",difficulty)
-        outState.putInt("OPERATION", operation)
-        outState.putInt("NUMQUESTIONS", numQuestions)
-    }
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        /**
+//         * Saves the data of [difficulty], [numQuestions] and [operation] at the time or orientation change,
+//         * to be re-assigned in onRestoreInstanceState()
+//         *
+//         * @property outState: Bundle that holds the data [DIFFICULTY], [OPERATION], AND [NUMQUESTIONS]
+//         */
+//        super.onSaveInstanceState(outState)
+//        outState.putInt("DIFFICULTY",difficulty)
+//        outState.putInt("OPERATION", operation)
+//        outState.putInt("NUMQUESTIONS", numQuestions)
+//    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        /**
+         * Implements onClickListeners and onChangeListeners for all buttons and radioButtons on UI.
+         * onClickListeners update their respective private variable (difficulty, operation, numQuestions, etc).
+         * onChangeListener checks for both radioGroups to be checked and updates the startButton when both options have been chosen
+         *
+         * @property inflater - converts fragment xml to Kotlin code for UI
+         * @property savedInstanceState - checks for a bundle which can contain information from a previous fragment
+         *
+         */
         // Inflate the layout for this fragment
+
+        /**
+         * Assigns all views and buttons in fragment_userInput.kt using their @ids
+         */
         val view = inflater.inflate(R.layout.fragment_user_input, container, false)
         val startButton = view.findViewById<Button>(R.id.startButton)
         val easyButton = view.findViewById<RadioButton>(R.id.easyButton)
@@ -100,6 +111,11 @@ class fragment_userInput : Fragment() {
         subtractionButton.setOnClickListener {
             onRadioButtonClicked(subtractionButton )
         }
+
+        /**
+         *  increments the numQuestions onClick but only if it doesn't go beneath 1
+         *  because you cannot have the app do zero questions
+         */
         minusSign.setOnClickListener {
             if (numQuestions > 1) {
                 numQuestions--
@@ -113,19 +129,22 @@ class fragment_userInput : Fragment() {
             Log.i("fragment_userInput", numQuestions.toString())
         }
 
-
-
-
         return view
     }
 
     fun onRadioButtonClicked(view: View) {
+        /**
+         * Looks at button and assigns difficulty and operation depending on the type of button.
+         * Only works on RadioButtons
+         *
+         * @property view - is the view that is taken in to check. This should be a RadioButton view.
+         * @property difficulty - difficulty is changed depending on which RadioButton is pressed
+         * @property operation - operation is changed depending on RadioButton
+         */
         if (view is RadioButton) {
-            // Is the button now checked?
             val checked = view.isChecked
 
-
-            // Check which radio button was clicked
+            // Check which radio button
             when (view.getId()) {
                 R.id.easyButton ->
                     if (checked) {
@@ -165,24 +184,4 @@ class fragment_userInput : Fragment() {
             }
         }
     }
-
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment fragment_userInput.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            fragment_userInput().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
-//    }
 }

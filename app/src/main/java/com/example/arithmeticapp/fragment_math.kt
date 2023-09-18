@@ -16,16 +16,6 @@ import org.w3c.dom.Text
 import kotlin.math.log
 import kotlin.random.Random
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [fragment_math.newInstance] factory method to
- * create an instance of this fragment.
- */
 class fragment_math : Fragment() {
     // TODO: Rename and change types of parameters
     private var difficulty = -1
@@ -117,6 +107,10 @@ class fragment_math : Fragment() {
             operator.text = "X"
             return num1 * num2
         }
+        /*
+        Rounds down. I can do decimals, but makes it more time consuming to test.
+        Would use andra String.format for decimals and would change this func to return a string or float
+         */
         else if (operation == 2) {
             operator.text = "/"
             return num1 / num2
