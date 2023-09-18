@@ -29,7 +29,7 @@ class fragment_userInput : Fragment() {
 
     private var difficulty = 0 // 0:easy 1:med 2:hard
     private var operation = 0 // 0:add 1:mult 2:div 3:subtract
-    private var numQuestions = 0
+    private var numQuestions = 1
     private var difficultyChecked = false
     private var operationChecked = false
 
@@ -76,6 +76,7 @@ class fragment_userInput : Fragment() {
             val bundle = Bundle()
             bundle.putInt("DIFFICULTY", difficulty)
             bundle.putInt("OPERATION", operation)
+            bundle.putInt("NUMQUESTIONS",numQuestions)
             view.findNavController().navigate(R.id.action_fragment_userInput_to_fragment_math,bundle)
         }
         easyButton.setOnClickListener {
@@ -100,7 +101,7 @@ class fragment_userInput : Fragment() {
             onRadioButtonClicked(subtractionButton )
         }
         minusSign.setOnClickListener {
-            if (numQuestions > 0) {
+            if (numQuestions > 1) {
                 numQuestions--
                 questionNumber.text = numQuestions.toString()
                 Log.i("fragment_userInput", numQuestions.toString())

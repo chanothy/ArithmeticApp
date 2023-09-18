@@ -1,6 +1,7 @@
 package com.example.arithmeticapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.core.text.isDigitsOnly
 import androidx.fragment.app.findFragment
+import androidx.navigation.findNavController
 import org.w3c.dom.Text
+import kotlin.math.log
 import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,6 +32,7 @@ class fragment_math : Fragment() {
     private var operation = -1
     private var numQuestions = -1
     private var questionsCorrect = 0
+    private var originalQuestions = -1
 
 
 //    override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -39,7 +44,9 @@ class fragment_math : Fragment() {
         arguments?.let {
             difficulty = it.getInt("DIFFICULTY")
             operation = it.getInt("OPERATION")
-            numQuestions= it.getInt("NUMQUESTIONS")
+            numQuestions = it.getInt("NUMQUESTIONS")
+            originalQuestions = it.getInt("NUMQUESTIONS")
+            Log.i("fragment_math",numQuestions.toString())
         }
     }
 
@@ -48,13 +55,27 @@ class fragment_math : Fragment() {
         val view = inflater.inflate(R.layout.fragment_math, container, false)
         val answerBox = view.findViewById<EditText>(R.id.answerBox)
         val doneButton = view.findViewById<Button>(R.id.doneButton)
-        mathGenerator(difficulty,operation,view)
-
+        var answer = mathGenerator(difficulty,operation,view)
 
         answerBox.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 answerBox.text.clear()
             }
+        }
+
+        doneButton.setOnClickListener {
+            if (answerBox.text.toString() == answer.toString()) {
+                questionsCorrect++
+            }
+            if (numQuestions <= 1) {
+                val bundle = Bundle()
+                bundle.putInt("QUESTIONSCORRECT", questionsCorrect)
+                bundle.putInt("NUMQUESTIONS", originalQuestions)
+                view.findNavController().navigate(R.id.action_fragment_math_to_fragment_result,bundle)
+            }
+            answerBox.text.clear()
+            answer = mathGenerator(difficulty,operation,view)
+            numQuestions--
         }
 
 
