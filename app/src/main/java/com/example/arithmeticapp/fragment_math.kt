@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import androidx.fragment.app.findFragment
 import org.w3c.dom.Text
 import kotlin.random.Random
 
@@ -44,13 +46,19 @@ class fragment_math : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_math, container, false)
-        val answerBox = view.findViewById<TextView>(R.id.answerBox)
+        val answerBox = view.findViewById<EditText>(R.id.answerBox)
+        val doneButton = view.findViewById<Button>(R.id.doneButton)
         mathGenerator(difficulty,operation,view)
 
 
-        answerBox.setOnClickListener {
-            answerBox.text = ""
+        answerBox.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                answerBox.text.clear()
+            }
         }
+
+
+
 //        val startButton = view.findViewById<TextView>(R.id.test)
 //        startButton.text = difficulty.toString()
         return view
@@ -60,8 +68,10 @@ class fragment_math : Fragment() {
     fun mathGenerator(difficulty: Int, operation: Int, view: View): Int {
         var num1 = -1
         var num2 = -1
+        var op = ""
         val firstOperand = view.findViewById<TextView>(R.id.firstOperand)
         val secondOperand = view.findViewById<TextView>(R.id.secondOperand)
+        val operator = view.findViewById<TextView>(R.id.operator)
 
         if (difficulty == 0) {
             num1 = Random.nextInt(0,9)
@@ -79,17 +89,22 @@ class fragment_math : Fragment() {
         secondOperand.text= num2.toString()
 
         if (operation == 0) {
+            operator.text = "+"
             return num1 + num2
         }
         else if (operation == 1) {
+            operator.text = "X"
             return num1 * num2
         }
         else if (operation == 2) {
+            operator.text = "/"
             return num1 / num2
         }
         else if (operation == 3) {
+            operator.text = "-"
             return num1 - num2
         }
+
         return -1
     }
 
