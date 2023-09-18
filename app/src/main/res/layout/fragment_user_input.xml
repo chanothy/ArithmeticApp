@@ -10,10 +10,12 @@
     <!-- TODO: Update blank fragment layout -->
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/startButton"
         android:layout_width="match_parent"
         android:layout_height="165dp"
-        android:text="Button"
+        android:text="START"
+        android:textSize="30dp"
+        android:enabled="false"
         app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +35,7 @@
         android:id="@+id/difficultyTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="25dp"
         android:layout_marginTop="8dp"
         android:text="Select Difficulty"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:textSize="25dp"
         android:text="Select Operation"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -57,6 +61,7 @@
 
         <RadioButton
             android:id="@+id/easyButton"
+            android:textSize="25dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="Easy" />
@@ -64,6 +69,7 @@
         <RadioButton
             android:id="@+id/mediumButton"
             android:layout_width="match_parent"
+            android:textSize="25dp"
             android:layout_height="40dp"
             android:text="Medium" />
 
@@ -71,6 +77,7 @@
             android:id="@+id/hardButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:textSize="25dp"
             android:text="Hard" />
     </RadioGroup>
 
@@ -84,7 +91,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
-        android:layout_width="135dp"
+        android:id="@+id/operationGroup"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -94,25 +102,29 @@
             android:id="@+id/additionButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Additon" />
+            android:text="Additon"
+            android:textSize="25dp" />
 
         <RadioButton
             android:id="@+id/multiplicationButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Multiplication" />
+            android:text="Multiplication"
+            android:textSize="25dp" />
 
         <RadioButton
             android:id="@+id/divisionButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Division" />
+            android:text="Division"
+            android:textSize="25dp" />
 
         <RadioButton
             android:id="@+id/subtractionButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Subtraction" />
+            android:text="Subtraction"
+            android:textSize="25dp" />
     </RadioGroup>
 
     <androidx.constraintlayout.widget.Guideline
@@ -133,36 +145,36 @@
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/questionNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
         android:gravity="center"
-        android:text="0"
-        android:textSize="30dp"
+        android:text="1"
+        android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/minusSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
         android:text="-"
-        android:textSize="30dp"
+        android:textSize="50dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/plusSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
         android:text="+"
-        android:textSize="30dp"
+        android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
