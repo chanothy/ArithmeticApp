@@ -67,7 +67,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:text="Your Answer..."
-        android:inputType="numberDecimal"
+        android:inputType="numberDecimal|numberSigned"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/operator" />
