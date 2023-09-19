@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 
-class fragment_result : Fragment() {
+class FragmentResult : Fragment() {
     /**
      * Arithmetic app result page.
      * Serves result page that shows how many questions answered correctly
@@ -21,6 +22,7 @@ class fragment_result : Fragment() {
      */
     private var questionsCorrect = 0
     private var numQuestions = 0
+    val args: FragmentResultArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         /**
@@ -30,8 +32,8 @@ class fragment_result : Fragment() {
          */
         super.onCreate(savedInstanceState)
         arguments?.let {
-            questionsCorrect = it.getInt("QUESTIONSCORRECT")
-            numQuestions = it.getInt("NUMQUESTIONS")
+            questionsCorrect = args.questionsCorrect
+            numQuestions = args.numQuestions
         }
     }
 

@@ -1,6 +1,5 @@
 package com.example.arithmeticapp
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,11 +10,11 @@ import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 
-class fragment_userInput : Fragment() {
+
+
+class FragmentUserInput : Fragment() {
     /**
      * Arithmetic app fragment User Input.
      * Serves as userInput page.
@@ -57,7 +56,7 @@ class fragment_userInput : Fragment() {
         // Inflate the layout for this fragment
 
         /**
-         * Assigns all views and buttons in fragment_userInput.kt using their @ids
+         * Assigns all views and buttons in FragmentUserInput.kt using their @ids
          */
         val view = inflater.inflate(R.layout.fragment_user_input, container, false)
         val startButton = view.findViewById<Button>(R.id.startButton)
@@ -84,11 +83,12 @@ class fragment_userInput : Fragment() {
         operationGroup.setOnCheckedChangeListener(onCheckedChangeListener)
 
         startButton.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putInt("DIFFICULTY", difficulty)
-            bundle.putInt("OPERATION", operation)
-            bundle.putInt("NUMQUESTIONS",numQuestions)
-            view.findNavController().navigate(R.id.action_fragment_userInput_to_fragment_math,bundle)
+            val action = FragmentUserInputDirections.actionFragmentUserInputToFragmentMath(difficulty,operation,numQuestions)
+            view.findNavController().navigate(action)
+//            bundle.putInt("DIFFICULTY", difficulty)
+//            bundle.putInt("OPERATION", operation)
+//            bundle.putInt("NUMQUESTIONS",numQuestions)
+//            view.findNavController().navigate(R.id.action_fragment_userInput_to_fragment_math,bundle)
         }
         easyButton.setOnClickListener {
             onRadioButtonClicked(easyButton)
@@ -120,13 +120,13 @@ class fragment_userInput : Fragment() {
             if (numQuestions > 1) {
                 numQuestions--
                 questionNumber.text = numQuestions.toString()
-                Log.i("fragment_userInput", numQuestions.toString())
+                Log.i("FragmentUserInput", numQuestions.toString())
             }
         }
         plusSign.setOnClickListener {
             numQuestions++
             questionNumber.text = numQuestions.toString()
-            Log.i("fragment_userInput", numQuestions.toString())
+            Log.i("FragmentUserInput", numQuestions.toString())
         }
 
         return view
@@ -149,37 +149,37 @@ class fragment_userInput : Fragment() {
                 R.id.easyButton ->
                     if (checked) {
                         difficulty = 0
-                        Log.i("fragment_userInput", "difficulty easy")
+                        Log.i("FragmentUserInput", "difficulty easy")
                     }
                 R.id.mediumButton ->
                     if (checked) {
                         difficulty = 1
-                        Log.i("fragment_userInput", "difficulty med")
+                        Log.i("FragmentUserInput", "difficulty med")
                     }
                 R.id.hardButton ->
                     if (checked) {
                         difficulty = 2
-                        Log.i("fragment_userInput", "difficulty hard")
+                        Log.i("FragmentUserInput", "difficulty hard")
                     }
                 R.id.additionButton ->
                     if (checked) {
                         operation = 0
-                        Log.i("fragment_userInput", "op addition")
+                        Log.i("FragmentUserInput", "op addition")
                     }
                 R.id.multiplicationButton ->
                     if (checked) {
                         operation = 1
-                        Log.i("fragment_userInput", "op mult")
+                        Log.i("FragmentUserInput", "op mult")
                     }
                 R.id.divisionButton ->
                     if (checked) {
                         operation = 2
-                        Log.i("fragment_userInput", "op div")
+                        Log.i("FragmentUserInput", "op div")
                     }
                 R.id.subtractionButton ->
                     if (checked) {
                         operation = 3
-                        Log.i("fragment_userInput", "op subtraction")
+                        Log.i("FragmentUserInput", "op subtraction")
                     }
             }
         }

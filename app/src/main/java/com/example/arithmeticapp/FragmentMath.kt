@@ -9,14 +9,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.core.text.isDigitsOnly
-import androidx.fragment.app.findFragment
 import androidx.navigation.findNavController
-import org.w3c.dom.Text
-import kotlin.math.log
+import androidx.navigation.fragment.navArgs
 import kotlin.random.Random
 
-class fragment_math : Fragment() {
+class FragmentMath : Fragment() {
     /**
      * Arithmetic app fragment math solving portion.
      * Serves as math solving page.
@@ -38,6 +35,7 @@ class fragment_math : Fragment() {
     private var questionsCorrect = 0
     private var originalQuestions = -1
 
+    val args: FragmentMathArgs by navArgs()
 
 //    override fun onViewStateRestored(savedInstanceState: Bundle?) {
 //        super.onViewStateRestored(savedInstanceState)
@@ -52,11 +50,11 @@ class fragment_math : Fragment() {
          */
         super.onCreate(savedInstanceState)
         arguments?.let {
-            difficulty = it.getInt("DIFFICULTY")
-            operation = it.getInt("OPERATION")
-            numQuestions = it.getInt("NUMQUESTIONS")
-            originalQuestions = it.getInt("NUMQUESTIONS")
-            Log.i("fragment_math",numQuestions.toString())
+            difficulty = args.difficulty
+            operation = args.operation
+            numQuestions = args.numQuestions
+            originalQuestions = args.numQuestions
+            Log.i("FragmentMath",numQuestions.toString())
         }
     }
 
@@ -86,7 +84,7 @@ class fragment_math : Fragment() {
 
         doneButton.setOnClickListener {
             if (answerBox.text.toString() == "." || answerBox.text.isEmpty() || answerBox.text.toString() == "-") {
-                Log.i("fragment_math","bad input")
+                Log.i("FragmentMath","bad input")
             }
             else if (operation == 2 && Math.abs(answerBox.text.toString().toDouble() - answer) <= .01) {
                 questionsCorrect++
@@ -95,10 +93,12 @@ class fragment_math : Fragment() {
                 questionsCorrect++
             }
             if (numQuestions <= 1) {
-                val bundle = Bundle()
-                bundle.putInt("QUESTIONSCORRECT", questionsCorrect)
-                bundle.putInt("NUMQUESTIONS", originalQuestions)
-                view.findNavController().navigate(R.id.action_fragment_math_to_fragment_result,bundle)
+                val action = FragmentMathDirections.actionFragmentMathToFragmentResult(questionsCorrect,originalQuestions)
+                view.findNavController().navigate(action)
+//                val bundle = Bundle()
+//                bundle.putInt("QUESTIONSCORRECT", questionsCorrect)
+//                bundle.putInt("NUMQUESTIONS", originalQuestions)
+//                view.findNavController().navigate(R.id.action_fragment_math_to_fragment_result,bundle)
             }
             answerBox.text.clear()
             answer = mathGenerator(difficulty,operation,view)
