@@ -17,12 +17,13 @@ class FragmentResult : Fragment() {
      *
      * @property questionsCorrect - how many questions correct
      * @property numQuestions - how many questions total
+     * @property args - safe args from previous fragment
      *
      * @author Timothy Chan
      */
     private var questionsCorrect = 0
     private var numQuestions = 0
-    val args: FragmentResultArgs by navArgs()
+    private val args: FragmentResultArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         /**

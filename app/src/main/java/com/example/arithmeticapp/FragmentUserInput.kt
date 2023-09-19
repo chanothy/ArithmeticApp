@@ -48,6 +48,7 @@ class FragmentUserInput : Fragment() {
          * Implements onClickListeners and onChangeListeners for all buttons and radioButtons on UI.
          * onClickListeners update their respective private variable (difficulty, operation, numQuestions, etc).
          * onChangeListener checks for both radioGroups to be checked and updates the startButton when both options have been chosen
+         * Implements safe args to pass data to next fragment.
          *
          * @property inflater - converts fragment xml to Kotlin code for UI
          * @property savedInstanceState - checks for a bundle which can contain information from a previous fragment
@@ -85,10 +86,6 @@ class FragmentUserInput : Fragment() {
         startButton.setOnClickListener {
             val action = FragmentUserInputDirections.actionFragmentUserInputToFragmentMath(difficulty,operation,numQuestions)
             view.findNavController().navigate(action)
-//            bundle.putInt("DIFFICULTY", difficulty)
-//            bundle.putInt("OPERATION", operation)
-//            bundle.putInt("NUMQUESTIONS",numQuestions)
-//            view.findNavController().navigate(R.id.action_fragment_userInput_to_fragment_math,bundle)
         }
         easyButton.setOnClickListener {
             onRadioButtonClicked(easyButton)

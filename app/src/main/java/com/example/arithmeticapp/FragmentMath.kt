@@ -26,6 +26,7 @@ class FragmentMath : Fragment() {
      * @property numQuestions - number of questions left to solve
      * @property questionsCorrect - questions answered correctly
      * @property originalQuestions - original amount of questions in userInput
+     * @property args - safe args from previous fragment
      *
      * @author Timothy Chan
      */
@@ -35,7 +36,7 @@ class FragmentMath : Fragment() {
     private var questionsCorrect = 0
     private var originalQuestions = -1
 
-    val args: FragmentMathArgs by navArgs()
+    private val args: FragmentMathArgs by navArgs()
 
 //    override fun onViewStateRestored(savedInstanceState: Bundle?) {
 //        super.onViewStateRestored(savedInstanceState)
@@ -62,11 +63,11 @@ class FragmentMath : Fragment() {
         /**
          * Implements onClickListeners for Done button to take in the answer and check with correct solution.
          * Increments if the solution is correct and moves to next fragment if enough questions have been answered.
-         *
+         * Implements safe args to pass data to next fragment
          * Implements onFocusChangeListener to clear the text in the textBox when it has the focus.
          *
          * @property container - container for fragment
-         * @property savedInstanceState - possible bundle that contains information for creating the view,
+         * @property savedInstanceState - contains information for creating the view,
          *      or saving information when orientation is changed
          * @property inflater - converts fragment xml to Kotlin code for UI
          */
@@ -95,10 +96,6 @@ class FragmentMath : Fragment() {
             if (numQuestions <= 1) {
                 val action = FragmentMathDirections.actionFragmentMathToFragmentResult(questionsCorrect,originalQuestions)
                 view.findNavController().navigate(action)
-//                val bundle = Bundle()
-//                bundle.putInt("QUESTIONSCORRECT", questionsCorrect)
-//                bundle.putInt("NUMQUESTIONS", originalQuestions)
-//                view.findNavController().navigate(R.id.action_fragment_math_to_fragment_result,bundle)
             }
             answerBox.text.clear()
             answer = mathGenerator(difficulty,operation,view)
