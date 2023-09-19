@@ -10,10 +10,12 @@ The following **required** functionality is completed:
 * [ ] User can click button to bring them to other fragments
 * [ ] User can answer questions.
 * [ ] User can view their ratio of questions answered correctly and restart.
+* [ ] Uses safe args to move information between fragments.
 
 The following **extensions** are implemented:
 
-* n/a
+* androidx.navigation.safeargs
+* androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version
 
 ## Video Walkthrough
 
