@@ -28,7 +28,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-One of the challenges was just understanding how the navhost worked for main activity and how fragments were set up. I also had to figure out how to transfer information from fragment to fragment through bundles.
+One of the challenges was just understanding how the navhost worked for main activity and how fragments were set up. I also had a lot of trouble figuring out how to use the safe args plugin correctly and implementing safe args once I had the plugins installed.
 
 ## License
 
