@@ -11,6 +11,9 @@ The following **required** functionality is completed:
 * [ ] User can answer questions.
 * [ ] User can view their ratio of questions answered correctly and restart.
 * [ ] Uses safe args to move information between fragments.
+* [ ] Has sound cue for correct and incorrect answers.
+* [ ] Has toasts for correct and incorrect answers.
+* [ ] Activity1 (FragmentUserInput) recieves data from Activity2 (FragmentMath) and displays message.
 
 The following **extensions** are implemented:
 
@@ -22,13 +25,14 @@ The following **extensions** are implemented:
 Here's a walkthrough of implemented user stories:
 
 <img src='appDemo' title='Video Walkthrough' width='50%' alt='Video Walkthrough' />
-<img src='https://github.com/chanothy/ArithmeticApp/blob/master/appDemo.gif' title='Video Walkthrough' width='50%' alt='Video Walkthrough' />
+<img src='https://github.com/chanothy/ArithmeticApp/blob/project4/appDemoUpdated.gif' title='Video Walkthrough' width='50%' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-One of the challenges was just understanding how the navhost worked for main activity and how fragments were set up. I also had to figure out how to transfer information from fragment to fragment through bundles.
+* One of the challenges was just understanding how the navhost worked for main activity and how fragments were set up. I also had to figure out how to transfer information from fragment to fragment through bundles. 
+* A new issue I faced was figuring out how to have default values but still allowing other fragments to pass arguments and override the default values.
 
 ## License
 
