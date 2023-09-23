@@ -13,15 +13,23 @@
         <action
             android:id="@+id/action_fragment_userInput_to_fragment_math"
             app:destination="@id/fragment_math" />
+        <argument
+            android:name="prevQuestionsCorrect"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument android:name="prevNumQuestions"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="prevOperation"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/fragment_result"
         android:name="com.example.arithmeticapp.FragmentResult"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" >
-        <action
-            android:id="@+id/action_fragment_result_to_fragment_userInput"
-            app:destination="@id/fragment_userInput" />
         <argument
             android:name="questionsCorrect"
             app:argType="integer" />
@@ -34,9 +42,6 @@
         android:name="com.example.arithmeticapp.FragmentMath"
         android:label="fragment_math"
         tools:layout="@layout/fragment_math" >
-        <action
-            android:id="@+id/action_fragment_math_to_fragment_result"
-            app:destination="@id/fragment_result" />
         <argument
             android:name="difficulty"
             app:argType="integer"
@@ -46,6 +51,10 @@
             app:argType="integer" />
         <argument
             android:name="numQuestions"
-            app:argType="integer" />
+            app:argType="integer"
+            />
+        <action
+            android:id="@+id/action_fragment_math_to_fragment_userInput"
+            app:destination="@id/fragment_userInput" />
     </fragment>
 </navigation>

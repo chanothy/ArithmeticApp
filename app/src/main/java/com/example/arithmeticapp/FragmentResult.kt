@@ -52,7 +52,7 @@ class FragmentResult : Fragment() {
         val restartButton = view.findViewById<Button>(R.id.restartButton)
 
         restartButton.setOnClickListener {
-            view.findNavController().navigate(R.id.action_fragment_result_to_fragment_userInput)
+//            view.findNavController().navigate(R.id.action_fragment_result_to_fragment_userInput)
         }
 
         resultView.text = "Your result: " + questionsCorrect.toString() + " / " + numQuestions.toString()

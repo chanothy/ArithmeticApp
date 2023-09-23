@@ -11,7 +11,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.navigation.findNavController
-
+import androidx.navigation.fragment.navArgs
 
 
 class FragmentUserInput : Fragment() {
@@ -29,21 +29,34 @@ class FragmentUserInput : Fragment() {
     private var numQuestions = 1
     private var difficultyChecked = false
     private var operationChecked = false
+    private var questionsCorrect = -1
+    private var questionsTotal = -1
+    private var lastOperation = -1
+    private val args: FragmentUserInputArgs by navArgs()
 
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        /**
-//         * Saves the data of [difficulty], [numQuestions] and [operation] at the time or orientation change,
-//         * to be re-assigned in onRestoreInstanceState()
-//         *
-//         * @property outState: Bundle that holds the data [DIFFICULTY], [OPERATION], AND [NUMQUESTIONS]
-//         */
-//        super.onSaveInstanceState(outState)
-//        outState.putInt("DIFFICULTY",difficulty)
-//        outState.putInt("OPERATION", operation)
-//        outState.putInt("NUMQUESTIONS", numQuestions)
-//    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        /**
+         * Assigns values from previous fragment to variables in this fragment
+         *
+         * @property savedInstanceState - takes bundle if passed from previous fragment that contains values
+         */
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            if (args.prevQuestionsCorrect != -1) {
+                questionsCorrect = args.prevQuestionsCorrect
+            }
+            if (args.prevNumQuestions != -1) {
+                questionsTotal = args.prevNumQuestions
+            }
+            if (args.prevOperation != -1) {
+                lastOperation = args.prevOperation
+            }
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         /**
          * Implements onClickListeners and onChangeListeners for all buttons and radioButtons on UI.
          * onClickListeners update their respective private variable (difficulty, operation, numQuestions, etc).
@@ -60,6 +73,7 @@ class FragmentUserInput : Fragment() {
          * Assigns all views and buttons in FragmentUserInput.kt using their @ids
          */
         val view = inflater.inflate(R.layout.fragment_user_input, container, false)
+
         val startButton = view.findViewById<Button>(R.id.startButton)
         val easyButton = view.findViewById<RadioButton>(R.id.easyButton)
         val mediumButton = view.findViewById<RadioButton>(R.id.mediumButton)
@@ -73,11 +87,30 @@ class FragmentUserInput : Fragment() {
         val questionNumber = view.findViewById<TextView>(R.id.questionNumber)
         val difficultyGroup = view.findViewById<RadioGroup>(R.id.difficultyGroup)
         val operationGroup = view.findViewById<RadioGroup>(R.id.operationGroup)
+        val correctResultsView = view.findViewById<TextView>(R.id.correctResultsView)
 
         val onCheckedChangeListener = RadioGroup.OnCheckedChangeListener { _, _ ->
             difficultyChecked = difficultyGroup.checkedRadioButtonId != -1
             operationChecked = operationGroup.checkedRadioButtonId != -1
             startButton.isEnabled = difficultyChecked && operationChecked
+        }
+
+        // 0:add 1:mult 2:div 3:subtract
+        var printOp = ""
+        when (lastOperation) {
+            0 -> printOp = "addition"
+            1 -> printOp = "multiplication"
+            2 -> printOp = "division"
+            3 -> printOp = "subtraction"
+        }
+
+        if (questionsTotal != -1) {
+            if ((questionsCorrect.toDouble())/(questionsTotal.toDouble()) > .8) {
+                correctResultsView.text = "You got $questionsCorrect"
+            }
+//            else {
+//                correctResultsView.text = "You got $questionsCorrect out of $questionsTotal correct in $printOp. Good work!"
+//            }
         }
 
         difficultyGroup.setOnCheckedChangeListener(onCheckedChangeListener)
