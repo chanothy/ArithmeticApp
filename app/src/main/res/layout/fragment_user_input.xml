@@ -14,9 +14,9 @@
         android:id="@+id/startButton"
         android:layout_width="match_parent"
         android:layout_height="165dp"
+        android:enabled="false"
         android:text="START"
         android:textSize="30dp"
-        android:enabled="false"
         app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,21 +36,21 @@
         android:id="@+id/difficultyTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Select Difficulty"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/correctResultsView" />
 
     <TextView
         android:id="@+id/OperationTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Select Operation"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/correctResultsView" />
 
     <RadioGroup
         android:id="@+id/difficultyGroup"
@@ -62,24 +62,24 @@
 
         <RadioButton
             android:id="@+id/easyButton"
-            android:textSize="25dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Easy" />
+            android:text="Easy"
+            android:textSize="25dp" />
 
         <RadioButton
             android:id="@+id/mediumButton"
             android:layout_width="match_parent"
-            android:textSize="25dp"
             android:layout_height="40dp"
-            android:text="Medium" />
+            android:text="Medium"
+            android:textSize="25dp" />
 
         <RadioButton
             android:id="@+id/hardButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textSize="25dp"
-            android:text="Hard" />
+            android:text="Hard"
+            android:textSize="25dp" />
     </RadioGroup>
 
     <ImageView
@@ -88,6 +88,7 @@
         android:layout_height="220dp"
         android:src="@drawable/math"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -128,68 +129,68 @@
             android:textSize="25dp" />
     </RadioGroup>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="423dp" />
-
     <TextView
         android:id="@+id/numQuestionsTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="9dp"
         android:text="Number of questions"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toBottomOf="@+id/operationGroup" />
 
     <TextView
         android:id="@+id/questionNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="1"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toBottomOf="@+id/numQuestionsTV" />
 
     <TextView
         android:id="@+id/minusSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="16dp"
         android:text="-"
         android:textSize="50dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toBottomOf="@+id/numQuestionsTV" />
 
     <TextView
         android:id="@+id/plusSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="16dp"
         android:text="+"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toBottomOf="@+id/numQuestionsTV" />
 
     <TextView
         android:id="@+id/correctResultsView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
+        android:layout_marginTop="9dp"
+        android:text=""
         android:textColor="#FF0000"
-        android:text="tv"
-        app:layout_constraintBottom_toTopOf="@+id/OperationTV"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.32742316" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

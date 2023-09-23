@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 
@@ -89,6 +90,10 @@ class FragmentUserInput : Fragment() {
         val operationGroup = view.findViewById<RadioGroup>(R.id.operationGroup)
         val correctResultsView = view.findViewById<TextView>(R.id.correctResultsView)
 
+        if (correctResultsView.text == "") {
+            correctResultsView.visibility = View.GONE
+        }
+
         val onCheckedChangeListener = RadioGroup.OnCheckedChangeListener { _, _ ->
             difficultyChecked = difficultyGroup.checkedRadioButtonId != -1
             operationChecked = operationGroup.checkedRadioButtonId != -1
@@ -105,12 +110,13 @@ class FragmentUserInput : Fragment() {
         }
 
         if (questionsTotal != -1) {
-            if ((questionsCorrect.toDouble())/(questionsTotal.toDouble()) > .8) {
-                correctResultsView.text = "You got $questionsCorrect"
+            correctResultsView.visibility = View.VISIBLE
+            if ((questionsCorrect.toDouble())/(questionsTotal.toDouble()) < .8) {
+                correctResultsView.text = "You got $questionsCorrect out of $questionsTotal in $printOp. You need practice."
             }
-//            else {
-//                correctResultsView.text = "You got $questionsCorrect out of $questionsTotal correct in $printOp. Good work!"
-//            }
+            else {
+                correctResultsView.text = "You got $questionsCorrect out of $questionsTotal correct in $printOp. Good work!"
+            }
         }
 
         difficultyGroup.setOnCheckedChangeListener(onCheckedChangeListener)

@@ -84,7 +84,7 @@ class FragmentMath : Fragment() {
         }
 
         doneButton.setOnClickListener {
-            if (answerBox.text.toString() == "." || answerBox.text.isEmpty() || answerBox.text.toString() == "-") {
+            if (answerBox.text.toString() == "." || answerBox.text.isEmpty() || answerBox.text.toString() == "-" || answerBox.text.toString() == "Your Answer...") {
                 Log.i("FragmentMath","bad input")
                 questionsCorrect+=0
             }
@@ -96,9 +96,9 @@ class FragmentMath : Fragment() {
             }
             if (numQuestions <= 1) {
                 val action = FragmentMathDirections.actionFragmentMathToFragmentUserInput().apply {
-//                    prevQuestionsCorrect = questionsCorrect
-//                    prevNumQuestions = originalQuestions
-//                    prevOperation = operation
+                    prevQuestionsCorrect = questionsCorrect
+                    prevNumQuestions = originalQuestions
+                    prevOperation = operation
                 }
                 view.findNavController().navigate(action)
             }
