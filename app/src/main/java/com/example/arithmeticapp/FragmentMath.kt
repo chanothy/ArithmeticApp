@@ -1,5 +1,6 @@
 package com.example.arithmeticapp
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlin.random.Random
@@ -87,12 +89,36 @@ class FragmentMath : Fragment() {
             if (answerBox.text.toString() == "." || answerBox.text.isEmpty() || answerBox.text.toString() == "-" || answerBox.text.toString() == "Your Answer...") {
                 Log.i("FragmentMath","bad input")
                 questionsCorrect+=0
+                val text = "Wrong."
+                val duration = Toast.LENGTH_SHORT
+                Toast.makeText(context, text, duration).show()
+                var mediaPlayer = MediaPlayer.create(context, R.raw.wrong)
+                mediaPlayer.start()
             }
             else if (operation == 2 && Math.abs(answerBox.text.toString().toDouble() - answer) <= .01) {
                 questionsCorrect++
+                val text = "Correct. Good work!"
+                val duration = Toast.LENGTH_SHORT
+                Toast.makeText(context, text, duration).show()
+                var mediaPlayer = MediaPlayer.create(context, R.raw.correct)
+                mediaPlayer.start()
+
             }
             else if (operation != 2 && answerBox.text.toString().toDouble() == answer) {
                 questionsCorrect++
+                val text = "Correct. Good work!"
+                val duration = Toast.LENGTH_SHORT
+                Toast.makeText(context, text, duration).show()
+                var mediaPlayer = MediaPlayer.create(context, R.raw.correct)
+                mediaPlayer.start()
+            }
+            else {
+                val text = "Wrong."
+                val duration = Toast.LENGTH_SHORT
+                Toast.makeText(context, text, duration).show()
+                var mediaPlayer = MediaPlayer.create(context, R.raw.wrong)
+                mediaPlayer.start()
+
             }
             if (numQuestions <= 1) {
                 val action = FragmentMathDirections.actionFragmentMathToFragmentUserInput().apply {
@@ -102,6 +128,7 @@ class FragmentMath : Fragment() {
                 }
                 view.findNavController().navigate(action)
             }
+
             answerBox.text.clear()
             answer = mathGenerator(difficulty,operation,view)
             numQuestions--
