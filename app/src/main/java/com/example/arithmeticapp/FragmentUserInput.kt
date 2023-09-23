@@ -41,6 +41,9 @@ class FragmentUserInput : Fragment() {
          * Assigns values from previous fragment to variables in this fragment
          *
          * @property savedInstanceState - takes bundle if passed from previous fragment that contains values
+         * @property questionsCorrect - questions done correctly info from fragment_math
+         * @property questionsTotal - questions total from fragment_math
+         * @property lastOperation - the most recent operation from fragment_math
          */
         super.onCreate(savedInstanceState)
         arguments?.let {

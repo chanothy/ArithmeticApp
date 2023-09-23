@@ -67,6 +67,7 @@ class FragmentMath : Fragment() {
          * Increments if the solution is correct and moves to next fragment if enough questions have been answered.
          * Implements safe args to pass data to next fragment
          * Implements onFocusChangeListener to clear the text in the textBox when it has the focus.
+         * Implements toasts and sound based on correctAnswers
          *
          * @property container - container for fragment
          * @property savedInstanceState - contains information for creating the view,
@@ -85,6 +86,7 @@ class FragmentMath : Fragment() {
             }
         }
 
+        // toasts and sound go here onClick
         doneButton.setOnClickListener {
             if (answerBox.text.toString() == "." || answerBox.text.isEmpty() || answerBox.text.toString() == "-" || answerBox.text.toString() == "Your Answer...") {
                 Log.i("FragmentMath","bad input")
